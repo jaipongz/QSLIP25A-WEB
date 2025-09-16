@@ -1,0 +1,53 @@
+
+<v-app-bar app color="primary" dark elevation="4" class="navbar">
+  <div class="d-flex align-center flex-grow-0">
+    <v-img
+      alt="Logo"
+      class="shrink mr-2"
+      contain
+      :src="logoUrl"
+      transition="scale-transition"
+      width="40"
+    />
+
+    <v-toolbar-title class="text-h6 font-weight-bold title-text">
+      {{ appTitle }}
+    </v-toolbar-title>
+  </div>
+
+  <v-spacer></v-spacer>
+
+  <v-btn
+    v-for="item in navigationItems"
+    :key="item.title"
+    :to="item.route"
+    variant="text"
+    class="d-none d-md-flex mr-2"
+  >
+    <v-icon start>{{ item.icon }}</v-icon>
+    {{ item.title }}
+  </v-btn>
+
+  <!-- Mobile Menu -->
+  <v-app-bar-nav-icon
+    @click="drawer = !drawer"
+    class="d-flex d-md-none"
+  ></v-app-bar-nav-icon>
+</v-app-bar>
+
+<!-- Mobile Navigation Drawer -->
+<v-navigation-drawer v-model="drawer" temporary location="right" class="mobile-drawer">
+  <v-list>
+    <v-list-item
+      v-for="item in navigationItems"
+      :key="item.title"
+      :to="item.route"
+      @click="drawer = false"
+    >
+      <template v-slot:prepend>
+        <v-icon>{{ item.icon }}</v-icon>
+      </template>
+      <v-list-item-title>{{ item.title }}</v-list-item-title>
+    </v-list-item>
+  </v-list>
+</v-navigation-drawer>

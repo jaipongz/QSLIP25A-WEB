@@ -1,0 +1,99 @@
+.navbar {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 
+              0 4px 5px 0 rgba(0, 0, 0, 0.14), 
+              0 1px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.navbar .d-flex {
+  min-width: fit-content;
+  flex-shrink: 0;
+}
+
+.navbar .v-toolbar-title {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  flex-shrink: 0 !important;
+}
+
+.title-text {
+  min-width: fit-content !important;
+  width: auto !important;
+}
+
+.navbar .v-btn {
+  text-transform: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: auto !important;
+  padding: 0 16px !important;
+  height: 48px !important;
+  white-space: nowrap;
+}
+
+.navbar .v-btn .v-btn__content {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.navbar .v-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.navbar .v-btn .v-icon {
+  margin-right: 4px;
+}
+
+.mobile-drawer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.mobile-drawer .v-list-item {
+  color: white;
+  margin: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-drawer .v-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-drawer .v-list-item-title {
+  font-weight: 500;
+}
+
+.mobile-drawer .v-icon {
+  color: white;
+}
+
+/* Animation for logo */
+.navbar .v-img {
+  transition: transform 0.3s ease;
+}
+
+.navbar .v-img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .navbar .v-toolbar-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar .v-toolbar-title {
+    font-size: 1.1rem;
+  }
+  
+  .navbar .v-img {
+    width: 32px;
+  }
+}
