@@ -41,6 +41,45 @@ export default {
 
       // ณ จุดนี้ คุณควรส่ง response.credential ไปให้ Backend ของคุณ
     },
+
+    loginWithFacebook() {
+      if (typeof FB === "undefined") {
+        alert(
+          "Facebook SDK could not be loaded. Please check your connection or ad-blocker."
+        );
+        return;
+      }
+
+      // เรียกใช้ Popup Login ของ Facebook
+      FB.login(
+        (response) => {
+          if (response.authResponse) {
+            console.log("Facebook Login Success:", response);
+
+            // เมื่อ Login สำเร็จ ให้ดึงข้อมูลโปรไฟล์
+            FB.api(
+              "/me",
+              { fields: "name, email, picture" },
+              (profileResponse) => {
+                console.log("Facebook Profile:", profileResponse);
+
+                this.userData = {
+                  name: profileResponse.name,
+                  email: profileResponse.email,
+                  picture: profileResponse.picture.data.url,
+                };
+
+                // ณ จุดนี้ คุณควรส่ง response.authResponse.accessToken ไปให้ Backend
+              }
+            );
+          } else {
+            console.log("User cancelled login or did not fully authorize.");
+          }
+        },
+        { scope: "public_profile,email" }
+      ); // ขอ permission เพื่อเข้าถึง email
+    },
+
     logout() {
       this.userData = null;
     },
