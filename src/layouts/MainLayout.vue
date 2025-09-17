@@ -56,15 +56,6 @@ export default {
 
 <style>
 :root {
-  /* --v-transition-duration คือตัวแปรที่ Vuetify ใช้กำหนดความเร็ว
-    ค่าเริ่มต้นคือ 0.22s (วินาที)
-    เราจะเปลี่ยนให้ช้าลงตามต้องการ
-  */
-
-  /* ทำให้ช้าลงประมาณ 2 เท่า */
-  --v-transition-duration: 2s; 
-  
-  /* หรือจะใช้หน่วย ms (milliseconds) ก็ได้ */
-  /* --v-transition-duration: 500ms; */
+  --v-transition-duration: 0.5s; 
 }
 </style>
