@@ -1,5 +1,10 @@
+import ForgotPasswordDialog from "@/components/ForgotPasswordDialog.vue";
+
 export default {
   name: "login",
+  components: {
+    ForgotPasswordDialog, // ลงทะเบียน component
+  },
   data() {
     return {
       form: {
@@ -15,6 +20,7 @@ export default {
           return pattern.test(value) || "Invalid e-mail.";
         },
       },
+      forgotDialog: false,
     };
   },
   methods: {
@@ -30,6 +36,7 @@ export default {
     forgotPassword() {
       console.log("Forgot password clicked");
       // this.$router.push('/forgot-password')
+      this.forgotDialog = true
     },
   },
 };
