@@ -17,7 +17,7 @@
             <div class="footer-content">
               {{ new Date().getFullYear() }} — <strong>E-Slip</strong>
               <span class="mx-2">|</span>
-              Made with ❤️ in Thailand
+              Made with ❤️ in Thailand By <a href="https://github.com/dashboard" >Bonsai Phawakhot</a>
             </div>
           </v-col>
         </v-row>

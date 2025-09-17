@@ -1,0 +1,104 @@
+<div class="container">
+  <v-row class="sub-content my-14">
+    <v-col class="py-0 px-2">
+      <v-card align="end" class="card-main" variant="outlined">
+        <v-img
+          :aspect-ratio="1"
+          class="bg-surface elevation-2"
+          src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+          cover
+          height="600px"
+        ></v-img>
+
+        <v-overlay
+          class="align-center justify-center"
+          scrim="#036358"
+          contained
+        >
+          <v-btn @click="" rounded>
+            Go To HomePage <v-icon>mdi-arrow-right-thin</v-icon>
+          </v-btn>
+        </v-overlay>
+      </v-card>
+    </v-col>
+    <v-col class="pa-0">
+      <v-card align="center" class="card-main px-2 py-4">
+        <h1>Create an account</h1>
+        <span
+          >Already an account?
+          <v-btn append-icon="mdi-login" variant="text" @click=""
+            >log in</v-btn
+          ></span
+        >
+        <div class="">
+          <v-row>
+            <v-col class="pa-5" cols="6">
+              <v-text-field
+                :focused="true"
+                name="firstname"
+                label="First Name"
+                id="firstname"
+                variant="outlined"
+                hide-details="true"
+                density="comfortable"
+                class=""
+              ></v-text-field>
+            </v-col>
+            <v-col class="pa-5" cols="6">
+              <v-text-field
+                name="lastname"
+                label="Last Name"
+                id="lastname"
+                variant="outlined"
+                hide-details="true"
+                density="comfortable"
+              ></v-text-field>
+            </v-col>
+          </v-row>
+          <v-text-field
+            name="email"
+            label="Email"
+            id="email"
+            variant="outlined"
+            hide-details="true"
+            class="pa-2"
+            density="comfortable"
+          ></v-text-field>
+          <v-text-field
+            name="password"
+            label="Password"
+            id="password"
+            variant="outlined"
+            hide-details="true"
+            class="pa-2"
+            density="comfortable"
+          ></v-text-field>
+          <div class="">
+            <v-btn color="success" @click="submitCreate">Create account</v-btn>
+          </div>
+
+          <v-divider class="my-4"></v-divider>
+
+          <v-row class="">
+            <v-col>
+              <v-btn
+                color="success"
+                append-icon="mdi-google"
+                @click="submitCreate"
+                >google</v-btn
+              >
+            </v-col>
+            <v-col>
+              <v-btn
+                color="Blue"
+                append-icon="mdi-facebook"
+                @click="submitCreate"
+                >facebook</v-btn
+              >
+            </v-col>
+          </v-row>
+        </div>
+      </v-card>
+    </v-col>
+  </v-row>
+</div>

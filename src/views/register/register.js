@@ -7,5 +7,8 @@ export default {
     },
     methods: {
         // Your methods here
+        async submitCreate() {
+            console.log('Submit')
+        }
     },
 }

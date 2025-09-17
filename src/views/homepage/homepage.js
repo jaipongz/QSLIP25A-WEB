@@ -96,7 +96,7 @@ export default {
     },
     getStarted() {
       // Navigate to registration or getting started page
-      this.$router.push('/services')
+      this.$router.push('/register')
       console.log('Get started clicked')
       // You can implement registration flow here
     },
