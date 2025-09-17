@@ -104,4 +104,13 @@
       </v-card>
     </v-col>
   </v-row>
+
+  <div v-if="userData" class="mt-6 text-center">
+    <v-avatar>
+      <v-img :src="userData.picture" alt="User Avatar"></v-img>
+    </v-avatar>
+    <p class="font-weight-bold mt-2">Welcome, {{ userData.name }}</p>
+    <p class="text-caption">{{ userData.email }}</p>
+    <v-btn small class="mt-2" @click="logout">Logout</v-btn>
+  </div>
 </v-container>
