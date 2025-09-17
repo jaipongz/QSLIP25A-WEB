@@ -1,93 +1,100 @@
-  <v-container class="fill-height" fluid>
-    <v-row align="center" justify="center">
-      <v-col cols="12" sm="10" md="8" lg="7">
-        <v-card class="elevation-12">
-          <v-row no-gutters>
-            <v-col cols="12" md="6">
-              <v-card-text class="pa-8 pa-md-10">
-                <h1 class="text-h5 font-weight-bold mb-1">Welcome Back!</h1>
-                <p class="text-body-2 mb-6">
-                  Don't have an account?
-                  <a href="#" class="font-weight-bold text-primary" @click.prevent="goToRegister">Sign Up</a>
-                </p>
-
-                <v-form @submit.prevent="submitLogin">
-                  <v-text-field
-                    v-model="form.email"
-                    label="Email"
-                    type="email"
-                    variant="outlined"
-                    density="compact"
-                    prepend-inner-icon="mdi-email-outline"
-                    class="mt-2"
-                    :rules="[rules.required, rules.email]"
-                  ></v-text-field>
-
-                  <v-text-field
-                    v-model="form.password"
-                    label="Password"
-                    :type="showPassword ? 'text' : 'password'"
-                    variant="outlined"
-                    density="compact"
-                    prepend-inner-icon="mdi-lock-outline"
-                    :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                    @click:append-inner="showPassword = !showPassword"
-                    class="mt-2"
-                    :rules="[rules.required]"
-                  ></v-text-field>
-
-                  <v-btn
-                    type="submit"
-                    color="primary"
-                    size="large"
-                    block
-                    class="mt-4"
-                  >
-                    Log In
-                  </v-btn>
-
-                  <v-divider class="my-6">
-                    <span class="text-caption">OR LOG IN WITH</span>
-                  </v-divider>
-
-                  <v-row>
-                    <v-col>
-                      <v-btn variant="outlined" block>
-                        <v-icon start>mdi-google</v-icon>
-                        Google
-                      </v-btn>
-                    </v-col>
-                    <v-col>
-                      <v-btn variant="outlined" block>
-                        <v-icon start>mdi-facebook</v-icon>
-                        Facebook
-                      </v-btn>
-                    </v-col>
-                  </v-row>
-                  <div class="mt-4 text-center">
-                    <a href="#" class="text-primary text-caption" @click.prevent="forgotPassword">Forgot Password?</a>
-                  </div>
-                </v-form>
-              </v-card-text>
-            </v-col>
-
-            <v-col md="6" class="d-none d-md-flex align-center justify-center pa-5" style="background-color: #036358;">
-              <div class="text-center text-white">
-                <v-icon size="80" class="mb-4">mdi-security</v-icon>
-                <h2 class="text-h4 font-weight-bold mb-2">Secure Access</h2>
-                <p class="mb-6">Log in to manage your E-Slip account.</p>
-                <v-btn
-                  rounded="lg"
-                  variant="outlined"
-                  size="large"
-                  @click="goToHome"
+<v-container class="fill-height" fluid>
+  <v-row align="center" justify="center">
+    <v-col cols="12" sm="10" md="8" lg="7">
+      <v-card class="elevation-12">
+        <v-row no-gutters>
+          <v-col cols="12" md="6">
+            <v-card-text class="pa-8 pa-md-10">
+              <h1 class="text-h5 font-weight-bold mb-1">Welcome Back!</h1>
+              <p class="text-body-2 mb-6">
+                Don't have an account?
+                <a
+                  href="#"
+                  class="font-weight-bold text-primary"
+                  @click.prevent="goToRegister"
+                  >Sign Up</a
                 >
-                  Go To HomePage
+              </p>
+
+              <v-form @submit.prevent="submitLogin">
+                <v-text-field
+                  v-model="form.email"
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                  density="compact"
+                  prepend-inner-icon="mdi-email-outline"
+                  class="mt-2"
+                  :rules="[rules.required, rules.email]"
+                ></v-text-field>
+
+                <v-text-field
+                  v-model="form.password"
+                  label="Password"
+                  :type="showPassword ? 'text' : 'password'"
+                  variant="outlined"
+                  density="compact"
+                  prepend-inner-icon="mdi-lock-outline"
+                  :append-inner-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                  @click:append-inner="showPassword = !showPassword"
+                  class="mt-2"
+                  :rules="[rules.required]"
+                ></v-text-field>
+
+                <v-btn
+                  type="submit"
+                  color="primary"
+                  size="large"
+                  block
+                  class="mt-4"
+                >
+                  Log In
                 </v-btn>
-              </div>
-            </v-col>
-          </v-row>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+
+                <LoginSocial @login-success="onSocialLoginSuccess"/>
+
+                <div class="mt-4 text-center">
+                  <a
+                    href="#"
+                    class="text-primary text-caption"
+                    @click.prevent="forgotPassword"
+                    >Forgot Password?</a
+                  >
+                </div>
+              </v-form>
+            </v-card-text>
+          </v-col>
+
+          <v-col
+            md="6"
+            class="d-none d-md-flex align-center justify-center pa-5"
+            style="background-color: #036358"
+          >
+            <div class="text-center text-white">
+              <v-icon size="80" class="mb-4">mdi-security</v-icon>
+              <h2 class="text-h4 font-weight-bold mb-2">Secure Access</h2>
+              <p class="mb-6">Log in to manage your E-Slip account.</p>
+              <v-btn
+                rounded="lg"
+                variant="outlined"
+                size="large"
+                @click="goToHome"
+              >
+                Go To HomePage
+              </v-btn>
+            </div>
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-col>
+  </v-row>
+  <div v-if="userData" class="mt-6 text-center">
+    <v-avatar>
+      <v-img :src="userData.picture" alt="User Avatar"></v-img>
+    </v-avatar>
+    <p class="font-weight-bold mt-2">Welcome, {{ userData.name }}</p>
+    <p class="text-caption">{{ userData.email }}</p>
+    <v-btn small class="mt-2" @click="logout">Logout</v-btn>
+  </div>
+  <ForgotPasswordDialog v-model="forgotDialog" />
+</v-container>

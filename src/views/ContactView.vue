@@ -17,7 +17,7 @@
                     <template v-slot:prepend>
                       <v-icon color="primary">mdi-phone</v-icon>
                     </template>
-                    <v-list-item-title>02-123-4567</v-list-item-title>
+                    <v-list-item-title>06-000-0000</v-list-item-title>
                   </v-list-item>
                   <v-list-item>
                     <template v-slot:prepend>

@@ -1,4 +1,5 @@
 <template>
+  <div>
     <Navbar />
 
     <v-main class="mt-16">
@@ -26,6 +27,7 @@
         </v-row>
       </v-container>
     </v-footer>
+  </div>
 </template>
 
 <script>
@@ -54,15 +56,39 @@ export default {
 
 <style>
 :root {
-  /* --v-transition-duration คือตัวแปรที่ Vuetify ใช้กำหนดความเร็ว
-    ค่าเริ่มต้นคือ 0.22s (วินาที)
-    เราจะเปลี่ยนให้ช้าลงตามต้องการ
-  */
+  --v-transition-duration: 0.5s; 
+}
+.loader {
+  display: block;
+  width: 84px;
+  height: 84px;
+  position: relative;
+}
 
-  /* ทำให้ช้าลงประมาณ 2 เท่า */
-  --v-transition-duration: 2s; 
-  
-  /* หรือจะใช้หน่วย ms (milliseconds) ก็ได้ */
-  /* --v-transition-duration: 500ms; */
+.loader:before , .loader:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #FFF;
+  transform: translate(-50% , -100%)  scale(0);
+  animation: push_401 2s infinite linear;
+}
+
+.loader:after {
+  animation-delay: 1s;
+}
+
+@keyframes push_401 {
+  0% , 50% {
+    transform: translate(-50% , 0%)  scale(1)
+  }
+
+  100% {
+    transform: translate(-50%, -100%) scale(0)
+  }
 }
 </style>

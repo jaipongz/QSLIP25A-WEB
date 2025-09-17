@@ -69,7 +69,8 @@ export default {
           number: '24/7',
           label: 'การสนับสนุน'
         }
-      ]
+      ],
+      loading: false
     }
   },
   mounted() {
