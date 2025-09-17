@@ -1,4 +1,5 @@
 import ForgotPasswordDialog from "@/components/ForgotPasswordDialog.vue";
+import { decodeCredential } from "vue3-google-login";
 
 export default {
   name: "login",
@@ -21,9 +22,28 @@ export default {
         },
       },
       forgotDialog: false,
+      userData: null,
     };
   },
   methods: {
+    handleGoogleLogin(response) {
+      // response.credential คือ JWT token ที่มีข้อมูลผู้ใช้
+      const decodedToken = decodeCredential(response.credential);
+
+      console.log("Google Login Success:", decodedToken);
+
+      // นำข้อมูลโปรไฟล์มาเก็บไว้ใน state
+      this.userData = {
+        name: decodedToken.name,
+        email: decodedToken.email,
+        picture: decodedToken.picture,
+      };
+
+      // ณ จุดนี้ คุณควรส่ง response.credential ไปให้ Backend ของคุณ
+    },
+    logout() {
+      this.userData = null;
+    },
     submitLogin() {
       console.log("Login Submitted:", this.form);
     },
@@ -36,7 +56,7 @@ export default {
     forgotPassword() {
       console.log("Forgot password clicked");
       // this.$router.push('/forgot-password')
-      this.forgotDialog = true
+      this.forgotDialog = true;
     },
   },
 };

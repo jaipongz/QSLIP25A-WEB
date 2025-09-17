@@ -1,4 +1,5 @@
 <template>
+  <div>
     <Navbar />
 
     <v-main class="mt-16">
@@ -26,6 +27,7 @@
         </v-row>
       </v-container>
     </v-footer>
+  </div>
 </template>
 
 <script>
