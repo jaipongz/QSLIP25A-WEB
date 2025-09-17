@@ -1,10 +1,8 @@
 export default {
-  name: "register",
+  name: "login",
   data() {
     return {
       form: {
-        firstName: "",
-        lastName: "",
         email: "",
         password: "",
       },
@@ -20,16 +18,18 @@ export default {
     };
   },
   methods: {
-    submitCreate() {
-      console.log("Form Submitted:", this.form);
+    submitLogin() {
+      console.log("Login Submitted:", this.form);
     },
-    goToLogin() {
-      this.$router.push('/login')
-      console.log("Go to login page");
+    goToRegister() {
+      this.$router.push("/register");
     },
     goToHome() {
-      this.$router.push('/')
-      console.log("Go to home page");
+      this.$router.push("/");
+    },
+    forgotPassword() {
+      console.log("Forgot password clicked");
+      // this.$router.push('/forgot-password')
     },
   },
 };

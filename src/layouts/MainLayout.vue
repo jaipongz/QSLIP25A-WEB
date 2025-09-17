@@ -1,9 +1,12 @@
 <template>
-  <div>
     <Navbar />
 
     <v-main class="mt-16">
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <v-slide-x-transition mode="out-in">
+          <component :is="Component" :key="$route.path" />
+        </v-slide-x-transition>
+      </router-view>
     </v-main>
 
     <v-footer
@@ -23,7 +26,6 @@
         </v-row>
       </v-container>
     </v-footer>
-  </div>
 </template>
 
 <script>
@@ -47,5 +49,20 @@ export default {
 /* Global styles for the layout */
 :deep(.v-main) {
   padding-top: 0 !important;
+}
+</style>
+
+<style>
+:root {
+  /* --v-transition-duration คือตัวแปรที่ Vuetify ใช้กำหนดความเร็ว
+    ค่าเริ่มต้นคือ 0.22s (วินาที)
+    เราจะเปลี่ยนให้ช้าลงตามต้องการ
+  */
+
+  /* ทำให้ช้าลงประมาณ 2 เท่า */
+  --v-transition-duration: 2s; 
+  
+  /* หรือจะใช้หน่วย ms (milliseconds) ก็ได้ */
+  /* --v-transition-duration: 500ms; */
 }
 </style>

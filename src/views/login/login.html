@@ -1,56 +1,17 @@
-<v-container class="fill-height" fluid>
+  <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
       <v-col cols="12" sm="10" md="8" lg="7">
         <v-card class="elevation-12">
           <v-row no-gutters>
-            <v-col md="6" class="d-none d-md-flex align-center justify-center pa-5" style="background-color: #036358;">
-              <div class="text-center text-white">
-                <v-icon size="80" class="mb-4">mdi-rocket-launch</v-icon>
-                <h2 class="text-h4 font-weight-bold mb-2">Welcome Q slip!</h2>
-                <p class="mb-6">Start your journey with us by creating an account.</p>
-                <v-btn
-                  rounded="lg"
-                  variant="outlined"
-                  size="large"
-                  @click="goToHome"
-                >
-                  Go To HomePage
-                </v-btn>
-              </div>
-            </v-col>
-
             <v-col cols="12" md="6">
               <v-card-text class="pa-8 pa-md-10">
-                <h1 class="text-h5 font-weight-bold mb-1">Create an Account</h1>
+                <h1 class="text-h5 font-weight-bold mb-1">Welcome Back!</h1>
                 <p class="text-body-2 mb-6">
-                  Already have an account?
-                  <a href="#" class="font-weight-bold text-primary" @click.prevent="goToLogin">Log in</a>
+                  Don't have an account?
+                  <a href="#" class="font-weight-bold text-primary" @click.prevent="goToRegister">Sign Up</a>
                 </p>
 
-                <v-form @submit.prevent="submitCreate">
-                  <v-row>
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        v-model="form.firstName"
-                        label="First Name"
-                        variant="outlined"
-                        density="compact"
-                        prepend-inner-icon="mdi-account-outline"
-                        :rules="[rules.required]"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        v-model="form.lastName"
-                        label="Last Name"
-                        variant="outlined"
-                        density="compact"
-                        prepend-inner-icon="mdi-account-outline"
-                        :rules="[rules.required]"
-                      ></v-text-field>
-                    </v-col>
-                  </v-row>
-                  
+                <v-form @submit.prevent="submitLogin">
                   <v-text-field
                     v-model="form.email"
                     label="Email"
@@ -82,11 +43,11 @@
                     block
                     class="mt-4"
                   >
-                    Create Account
+                    Log In
                   </v-btn>
 
                   <v-divider class="my-6">
-                    <span class="text-caption">OR SIGN UP WITH</span>
+                    <span class="text-caption">OR LOG IN WITH</span>
                   </v-divider>
 
                   <v-row>
@@ -103,8 +64,27 @@
                       </v-btn>
                     </v-col>
                   </v-row>
+                  <div class="mt-4 text-center">
+                    <a href="#" class="text-primary text-caption" @click.prevent="forgotPassword">Forgot Password?</a>
+                  </div>
                 </v-form>
               </v-card-text>
+            </v-col>
+
+            <v-col md="6" class="d-none d-md-flex align-center justify-center pa-5" style="background-color: #036358;">
+              <div class="text-center text-white">
+                <v-icon size="80" class="mb-4">mdi-security</v-icon>
+                <h2 class="text-h4 font-weight-bold mb-2">Secure Access</h2>
+                <p class="mb-6">Log in to manage your E-Slip account.</p>
+                <v-btn
+                  rounded="lg"
+                  variant="outlined"
+                  size="large"
+                  @click="goToHome"
+                >
+                  Go To HomePage
+                </v-btn>
+              </div>
             </v-col>
           </v-row>
         </v-card>
