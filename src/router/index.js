@@ -13,14 +13,7 @@ const router = createRouter({
           path: '/',
           name: 'home',
           component: HomePage,
-          meta: {
-            title: 'หน้าแรก - E-Slip'
-          }
-        },
-        {
-          path: '/home',
-          name: 'home',
-          component: HomePage,
+          alias: '/home',
           meta: {
             title: 'หน้าแรก - E-Slip'
           }
