@@ -1,10 +1,11 @@
 import ForgotPasswordDialog from "@/components/ForgotPasswordDialog.vue";
-import { decodeCredential } from "vue3-google-login";
+import LoginSocial from "@/components/LoginSocial.vue";
 
 export default {
   name: "login",
   components: {
     ForgotPasswordDialog, // ลงทะเบียน component
+    LoginSocial
   },
   data() {
     return {
@@ -26,58 +27,12 @@ export default {
     };
   },
   methods: {
-    handleGoogleLogin(response) {
-      // response.credential คือ JWT token ที่มีข้อมูลผู้ใช้
-      const decodedToken = decodeCredential(response.credential);
-
-      console.log("Google Login Success:", decodedToken);
-
-      // นำข้อมูลโปรไฟล์มาเก็บไว้ใน state
-      this.userData = {
-        name: decodedToken.name,
-        email: decodedToken.email,
-        picture: decodedToken.picture,
-      };
-
-      // ณ จุดนี้ คุณควรส่ง response.credential ไปให้ Backend ของคุณ
-    },
-
-    loginWithFacebook() {
-      if (typeof FB === "undefined") {
-        alert(
-          "Facebook SDK could not be loaded. Please check your connection or ad-blocker."
-        );
-        return;
-      }
-
-      // เรียกใช้ Popup Login ของ Facebook
-      FB.login(
-        (response) => {
-          if (response.authResponse) {
-            console.log("Facebook Login Success:", response);
-
-            // เมื่อ Login สำเร็จ ให้ดึงข้อมูลโปรไฟล์
-            FB.api(
-              "/me",
-              { fields: "name, email, picture" },
-              (profileResponse) => {
-                console.log("Facebook Profile:", profileResponse);
-
-                this.userData = {
-                  name: profileResponse.name,
-                  email: profileResponse.email,
-                  picture: profileResponse.picture.data.url,
-                };
-
-                // ณ จุดนี้ คุณควรส่ง response.authResponse.accessToken ไปให้ Backend
-              }
-            );
-          } else {
-            console.log("User cancelled login or did not fully authorize.");
-          }
-        },
-        { scope: "public_profile,email" }
-      ); // ขอ permission เพื่อเข้าถึง email
+    onSocialLoginSuccess(dataFromChild) {
+      console.log('Data received from child component:', dataFromChild);
+      this.userData = dataFromChild;
+      
+      // ส่งข้อมูลไป Backend หรือ redirect ไปหน้าอื่นได้
+      // this.$router.push('/dashboard');
     },
 
     logout() {

@@ -1,5 +1,11 @@
+import { decodeCredential } from "vue3-google-login";
+import LoginSocial from "@/components/LoginSocial.vue";
+
 export default {
   name: "register",
+  components: {
+    LoginSocial,
+  },
   data() {
     return {
       form: {
@@ -17,18 +23,31 @@ export default {
           return pattern.test(value) || "Invalid e-mail.";
         },
       },
+      userData: null,
     };
   },
   methods: {
+    onSocialLoginSuccess(dataFromChild) {
+      console.log("Data received from child component:", dataFromChild);
+      this.userData = dataFromChild;
+
+      // ส่งข้อมูลไป Backend หรือ redirect ไปหน้าอื่นได้
+      // this.$router.push('/dashboard');
+    },
+
+    logout() {
+      this.userData = null;
+    },
+
     submitCreate() {
       console.log("Form Submitted:", this.form);
     },
     goToLogin() {
-      this.$router.push('/login')
+      this.$router.push("/login");
       console.log("Go to login page");
     },
     goToHome() {
-      this.$router.push('/')
+      this.$router.push("/");
       console.log("Go to home page");
     },
   },
