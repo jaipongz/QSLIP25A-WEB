@@ -51,6 +51,32 @@ class AuthService {
     }
   }
 
+  // ล็อกอินด้วย Facebook
+  async loginWithFacebook(facebookData) {
+    try {
+      const response = await axiosInstance.post('/auth/facebook', {
+        id: facebookData.id,
+        name: facebookData.name,
+        email: facebookData.email,
+        picture: facebookData.picture
+      })
+      
+      const { user, token, refreshToken } = response.data
+      
+      const authStore = useAuthStore()
+      authStore.setAuth(user, token, refreshToken)
+      authStore.startTokenExpirationTimer()
+      
+      return { success: true, user }
+    } catch (error) {
+      console.error('Facebook login failed:', error)
+      return { 
+        success: false, 
+        message: error.response?.data?.message || 'เข้าสู่ระบบด้วย Facebook ไม่สำเร็จ' 
+      }
+    }
+  }
+
     // ล็อกอินด้วย Facebook
     async loginWithFacebook(facebookToken) {
       try {

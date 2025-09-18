@@ -51,7 +51,10 @@
                   Log In
                 </v-btn>
 
-                <LoginSocial @login-success="onSocialLoginSuccess" />
+                <LoginSocial 
+                  @login-success="onSocialLoginSuccess" 
+                  @login-error="onSocialLoginError" 
+                />
 
                 <div class="mt-4 text-center">
                   <a

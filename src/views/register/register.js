@@ -1,7 +1,7 @@
 import { decodeCredential } from "vue3-google-login";
 import LoginSocial from "@/components/LoginSocial.vue";
-import authService from '@/services/auth.service'
-import Swal from 'sweetalert2'
+import authService from "@/services/auth.service";
+import Swal from "sweetalert2";
 
 export default {
   name: "register",
@@ -28,15 +28,90 @@ export default {
         },
       },
       userData: null,
+      dialogUserData: false,
     };
   },
+  computed: {
+    isUserDataValid() {
+      return this.userData && this.userData.name && this.userData.email;
+    },
+  },
   methods: {
-    onSocialLoginSuccess(dataFromChild) {
+    async onSocialLoginSuccess(dataFromChild) {
       console.log("Data received from child component:", dataFromChild);
-      this.userData = dataFromChild;
 
-      // ส่งข้อมูลไป Backend หรือ redirect ไปหน้าอื่นได้
-      // this.$router.push('/dashboard');
+      // ตรวจสอบว่าข้อมูลมีครบถ้วนหรือไม่
+      if (dataFromChild && dataFromChild.name && dataFromChild.email) {
+        this.userData = dataFromChild;
+        this.dialogUserData = true; // เปิด dialog แสดงข้อมูลผู้ใช้
+        try {
+          let result;
+
+          // เรียก auth service ตาม provider
+          if (dataFromChild.provider === "facebook") {
+            result = await authService.loginWithFacebook(dataFromChild);
+          } else {
+            // Google login หรือ provider อื่นๆ
+            result = await authService.loginWithGoogle(dataFromChild);
+          }
+
+          if (result.success) {
+            // แสดง success alert
+            await Swal.fire({
+              title: "เข้าสู่ระบบสำเร็จ!",
+              text: `ยินดีต้อนรับ ${result.user.name || result.user.email}`,
+              icon: "success",
+              confirmButtonText: "ตกลง",
+              confirmButtonColor: "#1976D2",
+              timer: 2000,
+            });
+
+            // ไปหน้าแรก
+            this.$router.push("/");
+          } else {
+            // Backend login failed
+            await Swal.fire({
+              title: "ไม่สามารถเข้าสู่ระบบได้",
+              text: result.message,
+              icon: "error",
+              confirmButtonText: "ตกลง",
+              confirmButtonColor: "#1976D2",
+            });
+          }
+        } catch (error) {
+          console.error("Auth service error:", error);
+          await Swal.fire({
+            title: "เกิดข้อผิดพลาด",
+            text: "ไม่สามารถเชื่อมต่อกับระบบได้ กรุณาลองอีกครั้ง",
+            icon: "error",
+            confirmButtonText: "ตกลง",
+            confirmButtonColor: "#1976D2",
+          });
+        }
+      } else {
+        console.error("Invalid user data received:", dataFromChild);
+        await Swal.fire({
+          title: "เกิดข้อผิดพลาด",
+          text: "ไม่สามารถรับข้อมูลผู้ใช้จาก Social Login ได้",
+          icon: "error",
+          confirmButtonText: "ตกลง",
+          confirmButtonColor: "#1976D2",
+        });
+      }
+    },
+
+    async onSocialLoginError(errorData) {
+      console.error("Social Login Error:", errorData);
+
+      await Swal.fire({
+        title: `เกิดข้อผิดพลาดกับ ${
+          errorData.provider === "facebook" ? "Facebook" : "Social"
+        } Login`,
+        text: errorData.message || "ไม่สามารถเข้าสู่ระบบได้ กรุณาลองอีกครั้ง",
+        icon: "error",
+        confirmButtonText: "ตกลง",
+        confirmButtonColor: "#1976D2",
+      });
     },
 
     logout() {
@@ -45,7 +120,7 @@ export default {
 
     async submitCreate() {
       console.log("Form Submitted:", this.form);
-      
+
       this.loading = true;
       this.error = null;
 
@@ -54,7 +129,7 @@ export default {
         const userData = {
           name: `${this.form.firstName} ${this.form.lastName}`.trim(),
           email: this.form.email,
-          password: this.form.password
+          password: this.form.password,
         };
 
         const result = await authService.register(userData);
@@ -62,23 +137,23 @@ export default {
         if (!result.success) {
           this.error = result.message;
           await Swal.fire({
-            title: 'ไม่สามารถสมัครสมาชิกได้',
+            title: "ไม่สามารถสมัครสมาชิกได้",
             text: result.message,
-            icon: 'error',
-            confirmButtonText: 'ตกลง',
-            confirmButtonColor: '#1976D2'
+            icon: "error",
+            confirmButtonText: "ตกลง",
+            confirmButtonColor: "#1976D2",
           });
         }
         // หาก success แล้ว authService จะจัดการ redirect และ alert เอง
       } catch (error) {
-        console.error('Register error:', error);
-        this.error = 'เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองอีกครั้ง';
+        console.error("Register error:", error);
+        this.error = "เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองอีกครั้ง";
         await Swal.fire({
-          title: 'เกิดข้อผิดพลาด',
-          text: 'เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองอีกครั้ง',
-          icon: 'error',
-          confirmButtonText: 'ตกลง',
-          confirmButtonColor: '#1976D2'
+          title: "เกิดข้อผิดพลาด",
+          text: "เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองอีกครั้ง",
+          icon: "error",
+          confirmButtonText: "ตกลง",
+          confirmButtonColor: "#1976D2",
         });
       } finally {
         this.loading = false;

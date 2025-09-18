@@ -105,12 +105,17 @@
     </v-col>
   </v-row>
 
-  <v-dialog v-if="userData" class="mt-6 text-center">
-    <v-avatar>
-      <v-img :src="userData.picture" alt="User Avatar"></v-img>
-    </v-avatar>
-    <p class="font-weight-bold mt-2">Welcome, {{ userData.name }}</p>
-    <p class="text-caption">{{ userData.email }}</p>
-    <v-btn small class="mt-2" @click="logout">Logout</v-btn>
+  <v-dialog v-model="dialogUserData" class="mt-6 text-center" max-width="300">
+    <v-card v-if="isUserDataValid">
+      <v-avatar class="mx-auto mt-4" size="80">
+        <img 
+          :src="userData.picture || '/default-avatar.png'" 
+          :alt="`Avatar of ${userData.name}`"
+        />
+      </v-avatar>
+      <p class="font-weight-bold mt-2">Welcome, {{ userData.name }}</p>
+      <p class="text-caption">{{ userData.email }}</p>
+      <v-btn small class="mt-2 bg-red" @click="logout">Logout</v-btn>
+    </v-card>
   </v-dialog>
 </v-container>
