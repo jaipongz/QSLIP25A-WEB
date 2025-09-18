@@ -1,0 +1,97 @@
+/* Google Login Button Responsive Styling */
+.google-login-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.google-login-btn {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 40px !important;
+  display: block !important;
+}
+
+/* Override Google Login default styles */
+.google-login-btn > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+}
+
+.google-login-btn iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  height: 40px !important;
+  border: 1px solid rgba(0, 0, 0, 0.23) !important;
+  border-radius: 4px !important;
+}
+
+/* Alternative: Create custom Google button if needed */
+.custom-google-btn {
+  min-height: 40px !important;
+  border-color: #4285f4 !important;
+  color: #4285f4 !important;
+  text-transform: none !important;
+}
+
+.custom-google-btn:hover {
+  background-color: #4285f4 !important;
+  color: white !important;
+}
+
+/* Facebook Button Styling */
+.facebook-btn {
+  min-height: 40px !important;
+  border-color: #1877F2 !important;
+  color: #1877F2 !important;
+  text-transform: none !important;
+}
+
+.facebook-btn:hover {
+  background-color: #1877F2 !important;
+  color: white !important;
+}
+
+.facebook-btn:hover .v-icon {
+  color: white !important;
+}
+
+/* Row spacing */
+.v-row {
+  margin: 0 !important;
+}
+
+.v-col {
+  padding: 4px !important;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 600px) {
+  .v-col {
+    margin-bottom: 8px;
+    padding: 4px 0 !important;
+  }
+  
+  .google-login-btn iframe,
+  .facebook-btn {
+    min-height: 38px !important;
+    font-size: 14px !important;
+  }
+}
+
+/* Divider styling */
+.v-divider {
+  margin: 24px 0 !important;
+}
+
+.v-divider .text-caption {
+  background: white;
+  padding: 0 16px;
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 500;
+  font-size: 12px;
+}

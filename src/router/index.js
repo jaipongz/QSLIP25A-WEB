@@ -60,6 +60,22 @@ const router = createRouter({
         title: "Login - E-Slip",
       },
     },
+    {
+      path: "/email-verify",
+      name: "email-verify",
+      component: () => import("../views/EmailVerify.vue"),
+      meta: {
+        title: "Email Verify - E-Slip",
+      },
+    },
+    {
+      path: "/lander",
+      name: "lander",
+      component: () => import("../views/EmailVerify.vue"),
+      meta: {
+        title: "Email Verify - E-Slip",
+      },
+    },
   ],
 
   scrollBehavior(to, from, savedPosition) {

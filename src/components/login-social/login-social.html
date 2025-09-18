@@ -1,17 +1,32 @@
 <div>
-    <v-divider class="my-6">
-      <span class="text-caption">OR CONTINUE WITH</span>
-    </v-divider>
+  <v-divider class="my-6">
+    <span class="text-caption">OR CONTINUE WITH</span>
+  </v-divider>
 
-    <v-row>
-      <v-col>
-        <GoogleLogin :callback="handleGoogleLogin" />
-      </v-col>
-      <v-col>
-        <v-btn variant="outlined" block @click="loginWithFacebook">
-          <v-icon start color="#1877F2">mdi-facebook</v-icon>
-          Facebook
+  <v-row class="mb-4" dense>
+    <v-col cols="12" sm="6" class="pr-sm-2">
+      <div class="google-login-wrapper">
+        <!-- Try Google Login Component first -->
+        <GoogleLogin :callback="handleGoogleLogin" class="google-login-btn" v-if="useGoogleComponent" />
+        
+        <!-- Fallback Custom Google Button -->
+        <v-btn 
+          variant="outlined" 
+          block 
+          @click="handleGoogleLogin" 
+          class="custom-google-btn"
+          v-else
+        >
+          <v-icon start color="#4285f4">mdi-google</v-icon>
+          Google
         </v-btn>
-      </v-col>
-    </v-row>
-  </div>
+      </div>
+    </v-col>
+    <v-col cols="12" sm="6" class="pl-sm-2">
+      <v-btn variant="outlined" block @click="loginWithFacebook" class="facebook-btn">
+        <v-icon start color="#1877F2">mdi-facebook</v-icon>
+        Facebook
+      </v-btn>
+    </v-col>
+  </v-row>
+</div>

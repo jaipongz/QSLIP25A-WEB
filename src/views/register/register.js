@@ -1,5 +1,7 @@
 import { decodeCredential } from "vue3-google-login";
 import LoginSocial from "@/components/LoginSocial.vue";
+import authService from '@/services/auth.service'
+import Swal from 'sweetalert2'
 
 export default {
   name: "register",
@@ -15,6 +17,8 @@ export default {
         password: "",
       },
       showPassword: false,
+      loading: false,
+      error: null,
       rules: {
         required: (value) => !!value || "Required.",
         email: (value) => {
@@ -39,8 +43,46 @@ export default {
       this.userData = null;
     },
 
-    submitCreate() {
+    async submitCreate() {
       console.log("Form Submitted:", this.form);
+      
+      this.loading = true;
+      this.error = null;
+
+      try {
+        // แปลงข้อมูลให้ตรงกับ API
+        const userData = {
+          name: `${this.form.firstName} ${this.form.lastName}`.trim(),
+          email: this.form.email,
+          password: this.form.password
+        };
+
+        const result = await authService.register(userData);
+
+        if (!result.success) {
+          this.error = result.message;
+          await Swal.fire({
+            title: 'ไม่สามารถสมัครสมาชิกได้',
+            text: result.message,
+            icon: 'error',
+            confirmButtonText: 'ตกลง',
+            confirmButtonColor: '#1976D2'
+          });
+        }
+        // หาก success แล้ว authService จะจัดการ redirect และ alert เอง
+      } catch (error) {
+        console.error('Register error:', error);
+        this.error = 'เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองอีกครั้ง';
+        await Swal.fire({
+          title: 'เกิดข้อผิดพลาด',
+          text: 'เกิดข้อผิดพลาดในการสมัครสมาชิก กรุณาลองอีกครั้ง',
+          icon: 'error',
+          confirmButtonText: 'ตกลง',
+          confirmButtonColor: '#1976D2'
+        });
+      } finally {
+        this.loading = false;
+      }
     },
     goToLogin() {
       this.$router.push("/login");

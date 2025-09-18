@@ -12,7 +12,7 @@
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId      : 'YOUR_FACEBOOK_APP_ID', // <-- ใส่ App ID ของ facebook
+          appId      : import.meta.env.VITE_FACEBOOK_APP_ID, // <-- ใส่ App ID ของ facebook
           cookie     : true,
           xfbml      : true,
           version    : 'v18.0' 

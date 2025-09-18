@@ -1,0 +1,80 @@
+<v-container fluid fill-height>
+  <v-row align="center" justify="center">
+    <v-col cols="12" sm="8" md="6" lg="4">
+      <v-card class="elevation-12">
+        <v-toolbar color="primary" dark flat>
+          <v-toolbar-title>
+            ยืนยันอีเมล
+            <v-icon large>mdi-email-check</v-icon>
+        </v-toolbar-title>          
+        </v-toolbar>
+        
+        <v-card-text>
+          <!-- Loading state -->
+          <v-row v-if="loading" align="center" justify="center" class="py-8">
+            <v-col cols="12" class="text-center">
+              <v-progress-circular
+                indeterminate
+                color="primary"
+                size="64"
+              ></v-progress-circular>
+              <p class="text-subtitle-1 mt-4">กำลังยืนยันอีเมลของคุณ...</p>
+            </v-col>
+          </v-row>
+          
+          <!-- Success state -->
+          <v-row v-else-if="verified" align="center" justify="center" class="py-4">
+            <v-col cols="12" class="text-center">
+              <v-icon color="success" size="64" class="mb-4">mdi-check-circle</v-icon>
+              <h3 class="text-h5 mb-2">ยืนยันอีเมลสำเร็จ!</h3>
+              <p class="text-body-1 mb-4">{{ verificationMessage }}</p>
+              <p class="text-body-2 mb-6 text-grey">ตอนนี้คุณสามารถเข้าสู่ระบบได้แล้ว</p>
+              
+              <div class="d-flex justify-center flex-wrap gap-2">
+                <v-btn color="primary" size="large" @click="goToLogin" class="ma-1">
+                  <v-icon start>mdi-login</v-icon>
+                  เข้าสู่ระบบ
+                </v-btn>
+                <v-btn variant="outlined" color="primary" @click="goToHome" class="ma-1">
+                  <v-icon start>mdi-home</v-icon>
+                  กลับหน้าแรก
+                </v-btn>
+              </div>
+            </v-col>
+          </v-row>
+          
+          <!-- Error state -->
+          <v-row v-else-if="error" align="center" justify="center" class="py-4">
+            <v-col cols="12" class="text-center">
+              <v-icon color="error" size="64" class="mb-4">mdi-alert-circle</v-icon>
+              <h3 class="text-h5 mb-2">การยืนยันล้มเหลว</h3>
+              <p class="text-body-1 mb-4">{{ error }}</p>
+              
+              <div class="d-flex justify-center flex-wrap gap-2">
+                <v-btn color="secondary" @click="tryAgain" class="ma-1">
+                  <v-icon start>mdi-refresh</v-icon>
+                  ลองอีกครั้ง
+                </v-btn>
+                <v-btn variant="outlined" color="warning" @click="resendVerification" class="ma-1">
+                  <v-icon start>mdi-email-send</v-icon>
+                  ส่งลิงก์ใหม่
+                </v-btn>
+                <v-btn variant="outlined" color="info" @click="goToSupport" class="ma-1">
+                  <v-icon start>mdi-help-circle</v-icon>
+                  ติดต่อสนับสนุน
+                </v-btn>
+              </div>
+            </v-col>
+          </v-row>
+        </v-card-text>
+        
+        <v-card-actions class="px-4 pb-4 justify-center" v-if="!loading">
+          <p class="text-caption text-grey text-center">
+            มีปัญหา? ติดต่อเราได้ที่ 
+            <a :href="`mailto:${supportEmail}`" class="text-decoration-none">{{ supportEmail }}</a>
+          </p>
+        </v-card-actions>
+      </v-card>
+    </v-col>
+  </v-row>
+</v-container>

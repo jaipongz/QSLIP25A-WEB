@@ -72,6 +72,18 @@
   color: white;
 }
 
+/* User info styling */
+.user-info-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  margin: 8px;
+  border-radius: 12px;
+}
+
+.user-info-item .v-list-item-title,
+.user-info-item .v-list-item-subtitle {
+  color: white !important;
+}
+
 /* Animation for logo */
 .navbar .v-img {
   transition: transform 0.3s ease;

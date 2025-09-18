@@ -2,8 +2,8 @@
   <v-row align="center" justify="center">
     <v-col cols="12" sm="10" md="8" lg="7">
       <v-card class="elevation-12">
-        <v-row no-gutters>
-          <v-col cols="12" md="6">
+        <v-row>
+          <v-col cols="12" md="6" class="pa-0">
             <v-card-text class="pa-8 pa-md-10">
               <h1 class="text-h5 font-weight-bold mb-1">Welcome Back!</h1>
               <p class="text-body-2 mb-6">
@@ -51,7 +51,7 @@
                   Log In
                 </v-btn>
 
-                <LoginSocial @login-success="onSocialLoginSuccess"/>
+                <LoginSocial @login-success="onSocialLoginSuccess" />
 
                 <div class="mt-4 text-center">
                   <a
@@ -88,13 +88,18 @@
       </v-card>
     </v-col>
   </v-row>
-  <div v-if="userData" class="mt-6 text-center">
-    <v-avatar>
-      <v-img :src="userData.picture" alt="User Avatar"></v-img>
-    </v-avatar>
-    <p class="font-weight-bold mt-2">Welcome, {{ userData.name }}</p>
-    <p class="text-caption">{{ userData.email }}</p>
-    <v-btn small class="mt-2" @click="logout">Logout</v-btn>
-  </div>
+  <v-dialog v-model="dialogUserData" class="mt-6 text-center" max-width="300">
+    <v-card v-if="isUserDataValid">
+      <v-avatar class="mx-auto mt-4" size="80">
+        <img 
+          :src="userData.picture || '/default-avatar.png'" 
+          :alt="`Avatar of ${userData.name}`"
+        />
+      </v-avatar>
+      <p class="font-weight-bold mt-2">Welcome, {{ userData.name }}</p>
+      <p class="text-caption">{{ userData.email }}</p>
+      <v-btn small class="mt-2 bg-red" @click="logout">Logout</v-btn>
+    </v-card>
+  </v-dialog>
   <ForgotPasswordDialog v-model="forgotDialog" />
 </v-container>
