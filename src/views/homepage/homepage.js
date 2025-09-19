@@ -2,7 +2,7 @@ export default {
   name: 'Homepage',
   data() {
     return {
-      heroTitle: 'ยินดีต้อนรับสู่ E-Slip',
+      heroTitle: 'ยินดีต้อนรับสู่ QE-Slip',
       heroSubtitle: 'แพลตฟอร์มที่ทำให้การจัดการเอกสารของคุณง่ายขึ้น รวดเร็ว และมีประสิทธิภาพ',
       features: [
         {

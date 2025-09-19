@@ -1,8 +1,8 @@
 <div class="homepage" v-if="!loading">
   <section class="hero-section">
-    <v-container fluid class="hero-container">
+    <v-container  class="hero-container pa-2">
       <v-row align="center" justify="center" class="fill-height">
-        <v-col cols="12" md="8" lg="6">
+        <v-col >
           <div class="hero-content text-center">
             <h1 class="hero-title">
               {{ heroTitle }}
@@ -10,22 +10,20 @@
             <p class="hero-subtitle">
               {{ heroSubtitle }}
             </p>
-            <div class="hero-actions mt-6">
+            <div class="hero-actions" >
               <v-btn
-                color="primary"
+              
                 size="large"
                 elevation="4"
-                class="mr-4 mb-2"
+                class=" mb-2 btn-primary"
                 @click="scrollToFeatures"
               >
                 <v-icon left>mdi-rocket-launch</v-icon>
                 เริ่มต้นใช้งาน
               </v-btn>
               <v-btn
-                variant="outlined"
-                color="primary"
                 size="large"
-                class="mb-2"
+                class="mb-2 btn-outline"
                 @click="learnMore"
               >
                 <v-icon left>mdi-information</v-icon>

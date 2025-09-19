@@ -41,20 +41,10 @@ export default {
 }
 </script>
 
-<style scoped>
-.footer-content {
-  padding: 16px 0;
-  font-size: 0.875rem;
-  opacity: 0.9;
-}
-
-/* Global styles for the layout */
-:deep(.v-main) {
-  padding-top: 0 !important;
-}
-</style>
-
 <style>
+* {
+  font-family: 'Poppins', 'Prompt', sans-serif;
+}
 :root {
   --v-transition-duration: 0.5s; 
 }
@@ -92,3 +82,17 @@ export default {
   }
 }
 </style>
+
+<style scoped>
+.footer-content {
+  padding: 16px 0;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+/* Global styles for the layout */
+:deep(.v-main) {
+  padding-top: 0 !important;
+}
+</style>
+
