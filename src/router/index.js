@@ -17,7 +17,7 @@ const router = createRouter({
           alias: "/home",
           meta: {
             title: "Home - E-Slip",
-            requiresAuth: true 
+            requiresAuth: false 
           },
         },
         {
@@ -83,12 +83,16 @@ const router = createRouter({
   ],
 
   scrollBehavior(to, from, savedPosition) {
-    // Always scroll to top when changing routes
+    // ถ้ามีตำแหน่งที่ browser จำไว้
     if (savedPosition) {
       return savedPosition;
-    } else {
-      return { top: 0 };
     }
+    // ถ้าไปยัง hash เช่น #section1
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth' };
+    }
+    // ปกติเลื่อนไปบนสุด
+    return { top: 0, behavior: 'smooth' };
   },
 });
 

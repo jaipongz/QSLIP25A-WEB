@@ -6,13 +6,13 @@ export default {
   data() {
     return {
       drawer: false,
-      appTitle: 'E-Slip',
+      appTitle: 'QE-Slip',
       logoUrl: '/favicon.ico',
       navigationItems: [
         {
           title: 'หน้าแรก',
           icon: 'mdi-home',
-          route: '/'
+          route: '/home'
         },
         {
           title: 'เกี่ยวกับ',
