@@ -5,14 +5,15 @@ class EmailVerifyService {
   // ยืนยันอีเมลด้วย token
   async verifyEmail(token) {
     try {
-      const response = await axiosInstance.post('/auth/verify-email', { token })
+      const response = await axiosInstance.post(`/auth/verify-email?token=${token}`)
       
-      const { user, authToken, refreshToken } = response.data
+      // const { user, authToken, refreshToken } = response.data
       
       // ล็อกอินผู้ใช้หลังจากยืนยันอีเมลแล้ว
-      const authStore = useAuthStore()
-      authStore.setAuth(user, authToken, refreshToken)
-      authStore.startTokenExpirationTimer()
+      // const authStore = useAuthStore()
+      // authStore.setAuth(user, authToken, refreshToken)
+      // authStore.startTokenExpirationTimer()
+      console.log("RES:".response.data);
       
       return { 
         success: true, 
