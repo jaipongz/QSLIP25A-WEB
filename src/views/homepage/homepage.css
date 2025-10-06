@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #00c896 0%, #00bfff 50%, #ffffff 100%);
+  background: linear-gradient(135deg, #039aff 0%, #3700ff 50%, #bbbbbb 100%);
   position: relative;
   overflow: hidden;
 }
