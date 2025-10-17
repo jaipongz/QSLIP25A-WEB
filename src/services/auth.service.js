@@ -8,8 +8,7 @@ class AuthService {
   async login(credentials) {
     try {
       const response = await axiosInstance.post('/auth/login', credentials)
-      
-      const { user, token, refreshToken } = response.data
+      const { user, token, refreshToken } = response.data.data
       
       // เก็บข้อมูลใน store (memory)
       const authStore = useAuthStore()

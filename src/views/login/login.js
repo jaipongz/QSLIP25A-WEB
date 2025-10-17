@@ -59,9 +59,10 @@ export default {
 
           if (result.success) {
             // แสดง success alert
+            console.log('Login successful:', result); 
             await Swal.fire({
               title: 'เข้าสู่ระบบสำเร็จ!',
-              text: `ยินดีต้อนรับ ${result.user.name || result.user.email}`,
+              text: `ยินดีต้อนรับ ${result.user.first_name || result.user.email}`,
               icon: 'success',
               confirmButtonText: 'ตกลง',
               confirmButtonColor: '#1976D2',
@@ -137,7 +138,7 @@ export default {
           // แสดง success alert
           await Swal.fire({
             title: 'เข้าสู่ระบบสำเร็จ!',
-            text: `ยินดีต้อนรับ ${result.user.name || result.user.email}`,
+            text: `ยินดีต้อนรับ ${result.user.first_name || result.user.email}`,
             icon: 'success',
             confirmButtonText: 'ตกลง',
             confirmButtonColor: '#1976D2',
