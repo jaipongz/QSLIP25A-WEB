@@ -2,6 +2,7 @@
   width: 100%;
   overflow-x: hidden;
   font-family: 'Prompt', sans-serif;
+  background: #1B3C53;
 }
 
 /* Hero Section */
@@ -10,9 +11,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #039aff 0%, #3700ff 50%, #bbbbbb 100%);
   position: relative;
   overflow: hidden;
+  background: transparent;
 }
 
 /* Layer effect */
@@ -100,19 +101,20 @@
 /* Features Section */
 .features-section {
   padding: 100px 0;
-  background-color: #f9fcfb;
+  background: transparent;
+
 }
 
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #004d40;
+  color: #ffffff;
   margin-bottom: 1rem;
 }
 
 .section-subtitle {
   font-size: 1.125rem;
-  color: #455a64;
+  color: #6e787c;
   max-width: 600px;
   margin: 0 auto 3rem;
 }
@@ -160,7 +162,7 @@
 /* Statistics Section */
 .stats-section {
   padding: 80px 0;
-  background: linear-gradient(135deg, #00cba9 0%, #00bfff 100%);
+  background: transparent;
   color: white;
 }
 
@@ -183,7 +185,7 @@
 /* CTA Section */
 .cta-section {
   padding: 100px 0;
-  background: linear-gradient(135deg, #009688 0%, #004d80 100%);
+  background: transparent;
   color: white;
 }
 

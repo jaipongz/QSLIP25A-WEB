@@ -2,7 +2,7 @@
   <div>
     <Navbar />
 
-    <v-main class="mt-16">
+    <v-main>
       <router-view v-slot="{ Component }">
         <v-slide-x-transition mode="out-in">
           <component :is="Component" :key="$route.path" />
@@ -11,11 +11,11 @@
     </v-main>
 
     <v-footer
-      color="primary"
+      class="footer"
       dark
       padless
     >
-      <v-container>
+      <v-container >
         <v-row justify="center" no-gutters>
           <v-col class="text-center" cols="12">
             <div class="footer-content">
@@ -47,6 +47,10 @@ export default {
 }
 :root {
   --v-transition-duration: 0.5s; 
+}
+.footer {
+  background-color: rgba(27, 60, 83, 0.8) !important;
+  color: #ffffff !important;
 }
 .loader {
   display: block;
